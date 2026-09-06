@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبه آنلاین زون ضربان قلب چربی‌سوزی ورزشی | FitTools.ir</title>
+    <meta name="description" content="تخمین محدوده دقیق ضربان قلب برای چربی‌سوزی، هوازی و آستانه بی‌هوازی بر اساس سن و فرمول کاروونن.">
+    <link rel="canonical" href="https://fittools.ir/heart-rate.html">
+    <!-- Google Fonts & Tailwind -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Vazirmatn', sans-serif; }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "WebApplication", "name": "محاسبه آنلاین ضربان قلب چربی‌سوزی و زون‌های تمرینی | FitTools", "url": "https://fittools.ir/heart-rate.html", "description": "محاسبه ۵ زون ضربان قلب ورزشی برای بهینه‌سازی کالری‌سوزی، استقامت قلبی و ریکاوری با فرمول کاروونن"}
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- هدر سایت -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- لوگو -->
+                <a href="index.html" class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white font-black text-xl shadow-sm">
+                        ⚡
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-xl tracking-tight text-slate-900">FitTools<span class="text-emerald-600">.ir</span></span>
+                        <span class="hidden sm:block text-[11px] text-slate-400 font-medium">جعبه‌ابزار هوشمند تناسب اندام</span>
+                    </div>
+                </a>
+
+                <!-- منوی دسکتاپ -->
+                <nav class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">خانه</a>
+<a href="calorie.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">محاسبه کالری و ماکرو</a>
+<a href="water.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">آب مصرفی</a>
+<a href="body-fat.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">درصد چربی</a>
+<a href="ideal-weight.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">وزن ایده‌آل</a>
+<a href="heart-rate.html" class="px-3 py-2 text-sm transition-colors text-emerald-600 font-bold border-b-2 border-emerald-600">ضربان قلب ورزشی</a>
+
+                </nav>
+
+                <!-- دکمه منوی موبایل -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none" aria-label="منو">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- منوی بازشونده موبایل -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <a href="index.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">خانه</a>
+<a href="calorie.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">محاسبه کالری و ماکرو</a>
+<a href="water.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">آب مصرفی</a>
+<a href="body-fat.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">درصد چربی</a>
+<a href="ideal-weight.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">وزن ایده‌آل</a>
+<a href="heart-rate.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors bg-emerald-50 text-emerald-600 font-bold">ضربان قلب ورزشی</a>
+
+        </div>
+    </header>
+    <script>
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+    
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex-grow">
+        <div class="mb-6">
+            <div class="flex items-center gap-2 text-xs text-slate-400 mb-2">
+                <a href="index.html" class="hover:text-emerald-600">خانه</a>
+                <span>/</span>
+                <span class="text-slate-600 font-medium">زون‌های ضربان قلب</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">محاسبه محدوده ضربان قلب چربی‌سوزی</h1>
+            <p class="text-sm text-slate-500 mt-1">با فرمول Karvonen دقیقاً بدانید در چه دامنه‌ای از ضربان قلب، چربی‌سوزی به حداکثر می‌رسد.</p>
+        </div>
+
+        
+    <!-- جایگاه تبلیغات همسان / بنری (یکتانت یا مدیااد) -->
+    <div class="my-6 max-w-4xl mx-auto w-full">
+        <div class="bg-slate-100 border border-dashed border-slate-300 rounded-xl p-4 text-center text-slate-400 text-xs">
+            <span class="block font-medium mb-1">جایگاه تبلیغات کلیکی یا همسان</span>
+            <span>(کد اسکریپت یکتانت یا مدیااد خود را در این بخش قرار دهید)</span>
+        </div>
+    </div>
+
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-6 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <h2 class="text-base font-bold text-slate-800 mb-5 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                    ورودی‌های ورزشی
+                </h2>
+
+                <form id="hrForm" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">سن شما (سال)</label>
+                        <input type="number" id="hrAge" value="28" min="12" max="95" required class="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-rose-500 text-sm font-semibold text-center">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">ضربان قلب در حالت استراحت (اختیاری)</label>
+                        <input type="number" id="hrRest" value="65" min="40" max="110" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-rose-500 text-sm font-semibold text-center">
+                        <span class="text-[10px] text-slate-400">تعداد نبض در ۶۰ ثانیه بلافاصله بعد از بیداری در صبح</span>
+                    </div>
+
+                    <button type="submit" class="w-full mt-2 py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm shadow-md transition-colors flex items-center justify-center gap-2">
+                        <span>❤️ محاسبه ۵ زون تمرینی</span>
+                    </button>
+                </form>
+
+                <div class="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-500 leading-relaxed">
+                    💡 <strong class="text-slate-700">بهترین زون برای چربی‌سوزی:</strong> زون ۲ (۶۰ تا ۷۰ درصد توان قلب) جایی است که بدن بالاترین نسبت چربی به گلیکوژن را برای تولید انرژی می‌سوزاند.
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-base font-bold text-slate-800">زون‌های ۵ گانه ضربان قلب</h2>
+                        <span class="text-xs text-rose-600 font-bold" id="hrMax">حداکثر: ۱۹۲ bpm</span>
+                    </div>
+
+                    <div class="space-y-3 text-xs" id="zonesList">
+                        <!-- Zone 1 -->
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-slate-800 block">زون ۱: گرم‌کردن و ریکاوری (۵۰-۶۰٪)</span>
+                                <span class="text-[10px] text-slate-400">بهبود جریان خون بدون فشار</span>
+                            </div>
+                            <span class="font-black text-slate-700 text-sm" id="z1">۱۲۸ - ۱۴۱</span>
+                        </div>
+
+                        <!-- Zone 2 (Fat Burn) -->
+                        <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-emerald-900 block flex items-center gap-1">
+                                    <span>زون ۲: چربی‌سوزی پایه (۶۰-۷۰٪)</span>
+                                    <span class="text-[9px] bg-emerald-200 text-emerald-900 px-1.5 py-0.5 rounded font-bold">هدف لاغری</span>
+                                </span>
+                                <span class="text-[10px] text-emerald-700">بیشترین مصرف اسیدهای چرب</span>
+                            </div>
+                            <span class="font-black text-emerald-800 text-sm" id="z2">۱۴۱ - ۱۵۴</span>
+                        </div>
+
+                        <!-- Zone 3 -->
+                        <div class="p-3 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-blue-900 block">زون ۳: هوازی و استقامت (۷۰-۸۰٪)</span>
+                                <span class="text-[10px] text-blue-600">تقویت ریه و استقامت عضلات</span>
+                            </div>
+                            <span class="font-black text-blue-800 text-sm" id="z3">۱۵۴ - ۱۶۷</span>
+                        </div>
+
+                        <!-- Zone 4 -->
+                        <div class="p-3 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-amber-900 block">زون ۴: آستانه بی‌هوازی (۸۰-۹۰٪)</span>
+                                <span class="text-[10px] text-amber-600">افزایش سرعت و استقامت لاکتات</span>
+                            </div>
+                            <span class="font-black text-amber-800 text-sm" id="z4">۱۶۷ - ۱۷۹</span>
+                        </div>
+
+                        <!-- Zone 5 -->
+                        <div class="p-3 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-rose-900 block">زون ۵: حداکثر توان (۹۰-۱۰۰٪)</span>
+                                <span class="text-[10px] text-rose-600">تمرینات اینتروال شدید (HIIT)</span>
+                            </div>
+                            <span class="font-black text-rose-800 text-sm" id="z5">۱۷۹ - ۱۹۲</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-rose-600 to-pink-600 rounded-2xl p-5 text-white shadow-md">
+                    <span class="text-[11px] font-bold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded-full inline-block mb-2">تجهیزات سنجش پالس</span>
+                    <h3 class="text-sm font-bold mb-1">مانیتورینگ دقیق با ساعت هوشمند</h3>
+                    <p class="text-xs text-white/80 mb-3 leading-relaxed">برای حفظ دقیق ضربان قلب در زون ۲، یک مچ‌بند یا ساعت هوشمند ضربان‌سنج ضروری است.</p>
+                    <a href="https://affiliate.digikala.com" target="_blank" rel="nofollow noopener" class="block w-full text-center bg-white text-rose-900 font-bold text-xs py-2 rounded-xl shadow-sm hover:bg-rose-50 transition-colors">
+                        مشاهده ساعت‌ها و مچ‌بندهای پایش ضربان قلب
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const hrForm = document.getElementById('hrForm');
+        function calcHR() {
+            const age = parseFloat(document.getElementById('hrAge').value) || 28;
+            const rest = parseFloat(document.getElementById('hrRest').value) || 65;
+
+            const maxHR = 220 - age;
+            const hrr = maxHR - rest;
+
+            function getRate(pct) {
+                return Math.round(rest + (hrr * pct));
+            }
+
+            document.getElementById('hrMax').innerText = 'حداکثر توان: ' + maxHR.toLocaleString('fa-IR') + ' bpm';
+
+            const z1_l = getRate(0.50);
+            const z1_h = getRate(0.60);
+            const z2_l = z1_h;
+            const z2_h = getRate(0.70);
+            const z3_l = z2_h;
+            const z3_h = getRate(0.80);
+            const z4_l = z3_h;
+            const z4_h = getRate(0.90);
+            const z5_l = z4_h;
+            const z5_h = maxHR;
+
+            document.getElementById('z1').innerText = z1_l.toLocaleString('fa-IR') + ' - ' + z1_h.toLocaleString('fa-IR');
+            document.getElementById('z2').innerText = z2_l.toLocaleString('fa-IR') + ' - ' + z2_h.toLocaleString('fa-IR');
+            document.getElementById('z3').innerText = z3_l.toLocaleString('fa-IR') + ' - ' + z3_h.toLocaleString('fa-IR');
+            document.getElementById('z4').innerText = z4_l.toLocaleString('fa-IR') + ' - ' + z4_h.toLocaleString('fa-IR');
+            document.getElementById('z5').innerText = z5_l.toLocaleString('fa-IR') + ' - ' + z5_h.toLocaleString('fa-IR');
+        }
+
+        hrForm.addEventListener('submit', (e) => { e.preventDefault(); calcHR(); });
+        hrForm.addEventListener('input', calcHR);
+        calcHR();
+    </script>
+
+    <!-- فوتر سایت -->
+    <footer class="bg-slate-900 text-slate-400 mt-auto pt-12 pb-8 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- ستون معرفی -->
+                <div class="md:col-span-2 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">⚡</span>
+                        <span class="font-extrabold text-xl text-white">FitTools<span class="text-emerald-500">.ir</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+                        فیت‌تولز یک جعبه‌ابزار رایگان و بدون نیاز به ثبت‌نام برای محاسبه دقیق شاخص‌های سلامت، کالری، ماکروها و آب مصرفی است. تمام پردازش‌ها کاملاً آفلاین و در مرورگر شما انجام می‌شود.
+                    </p>
+                    <p class="text-xs text-slate-500">
+                        سلب مسئولیت: نتایج این ابزارها صرفاً جنبه آموزشی و راهنما دارند و جایگزین توصیه پزشک یا متخصص تغذیه نیستند.
+                    </p>
+                </div>
+
+                <!-- ستون ابزارها -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">ابزارهای سلامت</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="calorie.html" class="hover:text-emerald-400 transition-colors">محاسبه‌گر کالری و BMR</a></li>
+                        <li><a href="water.html" class="hover:text-emerald-400 transition-colors">محاسبه آب مصرفی روزانه</a></li>
+                        <li><a href="body-fat.html" class="hover:text-emerald-400 transition-colors">درصد چربی نیروی دریایی</a></li>
+                        <li><a href="ideal-weight.html" class="hover:text-emerald-400 transition-colors">تخمین وزن ایده‌آل</a></li>
+                        <li><a href="heart-rate.html" class="hover:text-emerald-400 transition-colors">زون‌های ضربان قلب چربی‌سوزی</a></li>
+                    </ul>
+                </div>
+
+                <!-- ستون دسترسی سریع -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">درباره پلتفرم</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-emerald-400 transition-colors">صفحه اصلی</a></li>
+                        <li><a href="calorie.html" class="hover:text-emerald-400 transition-colors">راهنمای لاغری و تثبیت</a></li>
+                        <li><span class="text-slate-500">طراحی شده با سرعت لود فوق‌العاده</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p>© ۲۰۲۶ تمامی حقوق برای وب‌سایت FitTools.ir محفوظ است.</p>
+                <p>ساخته شده برای سرعت و سادگی بدون نیاز به عضویت</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

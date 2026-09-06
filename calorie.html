@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبه کالری روزانه و ماکروها (BMR و TDEE) | FitTools.ir</title>
+    <meta name="description" content="محاسبه آنلاین کالری تثبیت، رژیم لاغری و تفکیک گرم پروتئین و کربوهیدرات با فرمول میفلین به صورت رایگان.">
+    <link rel="canonical" href="https://fittools.ir/calorie.html">
+    <!-- Google Fonts & Tailwind -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Vazirmatn', sans-serif; }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "WebApplication", "name": "محاسبه‌گر کالری و ماکرو روزانه | FitTools", "url": "https://fittools.ir/calorie.html", "description": "محاسبه آنلاین BMR، کالری مصرفی روزانه (TDEE) و تفکیک ماکروها (پروتئین، کربوهیدرات، چربی) برای لاغری و عضله‌سازی"}
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- هدر سایت -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- لوگو -->
+                <a href="index.html" class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white font-black text-xl shadow-sm">
+                        ⚡
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-xl tracking-tight text-slate-900">FitTools<span class="text-emerald-600">.ir</span></span>
+                        <span class="hidden sm:block text-[11px] text-slate-400 font-medium">جعبه‌ابزار هوشمند تناسب اندام</span>
+                    </div>
+                </a>
+
+                <!-- منوی دسکتاپ -->
+                <nav class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">خانه</a>
+<a href="calorie.html" class="px-3 py-2 text-sm transition-colors text-emerald-600 font-bold border-b-2 border-emerald-600">محاسبه کالری و ماکرو</a>
+<a href="water.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">آب مصرفی</a>
+<a href="body-fat.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">درصد چربی</a>
+<a href="ideal-weight.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">وزن ایده‌آل</a>
+<a href="heart-rate.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">ضربان قلب ورزشی</a>
+
+                </nav>
+
+                <!-- دکمه منوی موبایل -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none" aria-label="منو">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- منوی بازشونده موبایل -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <a href="index.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">خانه</a>
+<a href="calorie.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors bg-emerald-50 text-emerald-600 font-bold">محاسبه کالری و ماکرو</a>
+<a href="water.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">آب مصرفی</a>
+<a href="body-fat.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">درصد چربی</a>
+<a href="ideal-weight.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">وزن ایده‌آل</a>
+<a href="heart-rate.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">ضربان قلب ورزشی</a>
+
+        </div>
+    </header>
+    <script>
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+    
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex-grow">
+        <!-- عنوان و مسیر -->
+        <div class="mb-6">
+            <div class="flex items-center gap-2 text-xs text-slate-400 mb-2">
+                <a href="index.html" class="hover:text-emerald-600">خانه</a>
+                <span>/</span>
+                <span class="text-slate-600 font-medium">محاسبه کالری روزانه</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">محاسبه کالری و ماکروهای روزانه (TDEE و BMR)</h1>
+            <p class="text-sm text-slate-500 mt-1">با فرمول استاندارد Mifflin-St Jeor میزان کالری مورد نیاز برای تثبیت، چربی‌سوزی یا حجم را بیابید.</p>
+        </div>
+
+        
+    <!-- جایگاه تبلیغات همسان / بنری (یکتانت یا مدیااد) -->
+    <div class="my-6 max-w-4xl mx-auto w-full">
+        <div class="bg-slate-100 border border-dashed border-slate-300 rounded-xl p-4 text-center text-slate-400 text-xs">
+            <span class="block font-medium mb-1">جایگاه تبلیغات کلیکی یا همسان</span>
+            <span>(کد اسکریپت یکتانت یا مدیااد خود را در این بخش قرار دهید)</span>
+        </div>
+    </div>
+
+
+        <!-- بدنه ماشین‌حساب -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- فرم ورودی (ستون ۷ از ۱۲) -->
+            <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <h2 class="text-base font-bold text-slate-800 mb-5 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    اطلاعات فردی
+                </h2>
+
+                <form id="calorieForm" class="space-y-4">
+                    <!-- جنسیت -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1.5">جنسیت</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center justify-center gap-2 p-3 rounded-xl border border-slate-200 cursor-pointer hover:border-emerald-500 transition-all has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50/50 has-[:checked]:text-emerald-700 font-medium text-sm">
+                                <input type="radio" name="gender" value="male" checked class="hidden">
+                                <span>👨 آقا</span>
+                            </label>
+                            <label class="flex items-center justify-center gap-2 p-3 rounded-xl border border-slate-200 cursor-pointer hover:border-emerald-500 transition-all has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50/50 has-[:checked]:text-emerald-700 font-medium text-sm">
+                                <input type="radio" name="gender" value="female" class="hidden">
+                                <span>👩 خانم</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- سن، قد، وزن -->
+                    <div class="grid grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">سن (سال)</label>
+                            <input type="number" id="age" value="28" min="10" max="100" required class="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 text-sm font-semibold text-center">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">قد (cm)</label>
+                            <input type="number" id="height" value="175" min="100" max="230" required class="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 text-sm font-semibold text-center">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">وزن (kg)</label>
+                            <input type="number" id="weight" value="75" min="30" max="250" required class="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 text-sm font-semibold text-center">
+                        </div>
+                    </div>
+
+                    <!-- سطح فعالیت -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">میزان فعالیت روزانه</label>
+                        <select id="activity" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 text-sm font-medium bg-white">
+                            <option value="1.2">بی‌تحرک (پشت‌میزنشین، بدون ورزش)</option>
+                            <option value="1.375" selected>فعالیت کم (۱ تا ۳ روز ورزش در هفته)</option>
+                            <option value="1.55">فعالیت متوسط (۳ تا ۵ روز ورزش هفتگی)</option>
+                            <option value="1.725">بسیار فعال (۶ تا ۷ روز ورزش سنگین)</option>
+                            <option value="1.9">بسیار سنگین (تمرینات حرفه‌ای یا کار بدنی شدید)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="w-full mt-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-colors flex items-center justify-center gap-2">
+                        <span>⚡ محاسبه کالری من</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- کارت نتایج (ستون ۵ از ۱۲) -->
+            <div class="lg:col-span-5 space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <h2 class="text-base font-bold text-slate-800 mb-4">نتیجه محاسبه کالری</h2>
+                    
+                    <!-- کالری تثبیت -->
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 mb-4 text-center">
+                        <span class="text-xs text-slate-500 font-medium block mb-1">کالری تثبیت وزن (TDEE)</span>
+                        <div class="text-3xl font-black text-slate-900 tracking-tight" id="resTdee">۲,۲۴۰</div>
+                        <span class="text-[11px] text-slate-400">کیلوکالری در روز</span>
+                    </div>
+
+                    <!-- بازه‌های هدف -->
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-emerald-50/70 border border-emerald-100">
+                            <span class="text-emerald-900 font-medium">کاهش وزن ملایم (۰.۲۵ کیلو/هفته)</span>
+                            <span class="font-bold text-emerald-700" id="resMild">۱,۹۹۰ kcal</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-teal-50/70 border border-teal-100">
+                            <span class="text-teal-900 font-medium">کاهش وزن استاندارد (۰.۵ کیلو/هفته)</span>
+                            <span class="font-bold text-teal-700" id="resLoss">۱,۷۴۰ kcal</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-amber-50/70 border border-amber-100">
+                            <span class="text-amber-900 font-medium">افزایش وزن و عضله (+۳۰۰)</span>
+                            <span class="font-bold text-amber-700" id="resGain">۲,۵۴۰ kcal</span>
+                        </div>
+                    </div>
+
+                    <!-- ماکروها برای کالری استاندارد -->
+                    <div class="mt-5 pt-4 border-t border-slate-100">
+                        <span class="text-xs font-bold text-slate-700 block mb-2">تقسیم ماکرو برای رژیم متعادل:</span>
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                            <div class="p-2 rounded-lg bg-slate-50">
+                                <span class="block text-slate-400 text-[10px]">پروتئین (۳۰٪)</span>
+                                <span class="font-bold text-slate-800" id="resProtein">۱۳۰ گرم</span>
+                            </div>
+                            <div class="p-2 rounded-lg bg-slate-50">
+                                <span class="block text-slate-400 text-[10px]">کربوهیدرات (۴۰٪)</span>
+                                <span class="font-bold text-slate-800" id="resCarb">۱۷۴ گرم</span>
+                            </div>
+                            <div class="p-2 rounded-lg bg-slate-50">
+                                <span class="block text-slate-400 text-[10px]">چربی (۳۰٪)</span>
+                                <span class="font-bold text-slate-800" id="resFat">۵۸ گرم</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- باکس افیلیت هوشمند -->
+                <div class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-5 text-white shadow-md">
+                    <span class="text-[11px] font-bold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded-full inline-block mb-2">پیشنهاد مکمل و تجهیزات</span>
+                    <h3 class="text-sm font-bold mb-1">دقیق‌تر رژیم بگیرید</h3>
+                    <p class="text-xs text-white/80 mb-3 leading-relaxed">داشتن یک ترازوی دیجیتال دقیق و پودر پروتئین مرغوب، شانس موفقیت رژیم را ۲ برابر می‌کند.</p>
+                    <div class="space-y-2">
+                        <a href="https://affiliate.digikala.com" target="_blank" rel="nofollow noopener" class="block w-full text-center bg-white text-emerald-800 font-bold text-xs py-2 rounded-xl shadow-sm hover:bg-emerald-50 transition-colors">
+                            مشاهده پرفروش‌ترین ترازوهای دیجیتال آشپزخانه
+                        </a>
+                        <a href="https://affiliate.digikala.com" target="_blank" rel="nofollow noopener" class="block w-full text-center bg-emerald-700/80 text-white font-medium text-xs py-2 rounded-xl hover:bg-emerald-700 transition-colors">
+                            پروتئین وی و مکمل‌های رژیمی اصل
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ابزارهای مکمل -->
+        <section class="mt-12 bg-white rounded-2xl border border-slate-200 p-6">
+            <h3 class="text-base font-bold text-slate-800 mb-4">سایر ابزارهای مرتبط با وزن شما</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="body-fat.html" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-100 hover:border-emerald-300 hover:bg-slate-50 transition-all">
+                    <span class="text-2xl">📏</span>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-800">محاسبه درصد چربی بدن</h4>
+                        <p class="text-xs text-slate-400">بدانید چقدر از وزنتان عضله و چقدر چربی است</p>
+                    </div>
+                </a>
+                <a href="water.html" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-100 hover:border-emerald-300 hover:bg-slate-50 transition-all">
+                    <span class="text-2xl">💧</span>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-800">محاسبه آب مورد نیاز</h4>
+                        <p class="text-xs text-slate-400">میزان آب برای تسریع متابولیسم چربی‌سوزی</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const form = document.getElementById('calorieForm');
+        function calc() {
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseFloat(document.getElementById('age').value) || 25;
+            const h = parseFloat(document.getElementById('height').value) || 170;
+            const w = parseFloat(document.getElementById('weight').value) || 70;
+            const act = parseFloat(document.getElementById('activity').value) || 1.2;
+
+            // Mifflin-St Jeor
+            let bmr = (10 * w) + (6.25 * h) - (5 * age);
+            bmr = gender === 'male' ? bmr + 5 : bmr - 161;
+
+            const tdee = Math.round(bmr * act);
+            const mild = Math.round(tdee - 250);
+            const loss = Math.round(tdee - 500);
+            const gain = Math.round(tdee + 300);
+
+            // Macros for standard loss
+            const protCal = loss * 0.30;
+            const carbCal = loss * 0.40;
+            const fatCal = loss * 0.30;
+
+            document.getElementById('resTdee').innerText = tdee.toLocaleString('fa-IR');
+            document.getElementById('resMild').innerText = mild.toLocaleString('fa-IR') + ' kcal';
+            document.getElementById('resLoss').innerText = loss.toLocaleString('fa-IR') + ' kcal';
+            document.getElementById('resGain').innerText = gain.toLocaleString('fa-IR') + ' kcal';
+
+            document.getElementById('resProtein').innerText = Math.round(protCal / 4).toLocaleString('fa-IR') + ' گرم';
+            document.getElementById('resCarb').innerText = Math.round(carbCal / 4).toLocaleString('fa-IR') + ' گرم';
+            document.getElementById('resFat').innerText = Math.round(fatCal / 9).toLocaleString('fa-IR') + ' گرم';
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            calc();
+        });
+        form.addEventListener('input', calc);
+        calc();
+    </script>
+
+    <!-- فوتر سایت -->
+    <footer class="bg-slate-900 text-slate-400 mt-auto pt-12 pb-8 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- ستون معرفی -->
+                <div class="md:col-span-2 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">⚡</span>
+                        <span class="font-extrabold text-xl text-white">FitTools<span class="text-emerald-500">.ir</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+                        فیت‌تولز یک جعبه‌ابزار رایگان و بدون نیاز به ثبت‌نام برای محاسبه دقیق شاخص‌های سلامت، کالری، ماکروها و آب مصرفی است. تمام پردازش‌ها کاملاً آفلاین و در مرورگر شما انجام می‌شود.
+                    </p>
+                    <p class="text-xs text-slate-500">
+                        سلب مسئولیت: نتایج این ابزارها صرفاً جنبه آموزشی و راهنما دارند و جایگزین توصیه پزشک یا متخصص تغذیه نیستند.
+                    </p>
+                </div>
+
+                <!-- ستون ابزارها -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">ابزارهای سلامت</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="calorie.html" class="hover:text-emerald-400 transition-colors">محاسبه‌گر کالری و BMR</a></li>
+                        <li><a href="water.html" class="hover:text-emerald-400 transition-colors">محاسبه آب مصرفی روزانه</a></li>
+                        <li><a href="body-fat.html" class="hover:text-emerald-400 transition-colors">درصد چربی نیروی دریایی</a></li>
+                        <li><a href="ideal-weight.html" class="hover:text-emerald-400 transition-colors">تخمین وزن ایده‌آل</a></li>
+                        <li><a href="heart-rate.html" class="hover:text-emerald-400 transition-colors">زون‌های ضربان قلب چربی‌سوزی</a></li>
+                    </ul>
+                </div>
+
+                <!-- ستون دسترسی سریع -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">درباره پلتفرم</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-emerald-400 transition-colors">صفحه اصلی</a></li>
+                        <li><a href="calorie.html" class="hover:text-emerald-400 transition-colors">راهنمای لاغری و تثبیت</a></li>
+                        <li><span class="text-slate-500">طراحی شده با سرعت لود فوق‌العاده</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p>© ۲۰۲۶ تمامی حقوق برای وب‌سایت FitTools.ir محفوظ است.</p>
+                <p>ساخته شده برای سرعت و سادگی بدون نیاز به عضویت</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

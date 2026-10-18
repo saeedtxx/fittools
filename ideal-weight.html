@@ -26,7 +26,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <!-- موتور مدرن خروجی تصویر با پشتیبانی کامل از فونت فارسی و چسبندگی حروف RTL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -53,6 +54,10 @@
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
+        }
+        .capture-fix {
+            letter-spacing: 0px !important;
+            font-feature-settings: "kern" 1, "liga" 1;
         }
     </style>
     <script type="application/ld+json">
@@ -124,7 +129,7 @@
                 <span>/</span>
                 <span class="text-slate-600 font-medium">وزن ایده‌آل</span>
             </nav>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">محاسبه آنلاین وزن ایده‌آل (IBW)</h1>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">محاسبه آنلاین وزن ایده‌آل (IBW)</h1>
             <p class="text-sm text-slate-500 mt-1">مقایسه محدوده وزن سلامت بر اساس ۴ فرمول معتبر پزشکی دواین، رابینسون، میلر و هامتوی.</p>
         </div>
 
@@ -177,28 +182,37 @@
                 </div>
             </div>
 
+            <!-- کارت نتایج با چیدمان ایزوله و فیکس کامل تداخل متن فارسی در عکس -->
             <div class="lg:col-span-5 space-y-4">
-                <div id="captureCard" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm text-center">
+                <div id="captureCard" class="capture-fix bg-white rounded-2xl border border-slate-200 p-6 shadow-sm text-center" dir="rtl">
                     <div class="flex items-center justify-between mb-4">
                         <h2 class="text-base font-bold text-slate-800">میانگین وزن ایده‌آل شما</h2>
-                        <span class="text-[11px] font-extrabold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200">FitTools.ir ⚡</span>
+                        <span class="text-[11px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200" dir="ltr">⚡ FitTools.ir</span>
                     </div>
                     
                     <div class="bg-purple-50/60 rounded-xl p-5 border border-purple-100 mb-4">
-                        <span class="text-xs text-purple-700 font-medium block mb-1">محدوده وزن متناسب</span>
-                        <div class="text-3xl font-black text-purple-900 tracking-tight" id="resAvgWeight">۶۸ - ۷۲</div>
-                        <span class="text-xs text-purple-600 font-bold">کیلوگرم</span>
+                        <span class="text-xs text-purple-700 font-medium block mb-2">محدوده وزن متناسب</span>
+                        <!-- استفاده از span مجزا و فاصله استاندارد برای جلوگیری از روی هم افتادن "تا" در تصویر -->
+                        <div class="text-3xl font-black text-purple-900 my-1 flex items-center justify-center gap-2" id="resAvgWeight">
+                            <span id="resLowW">۶۷</span>
+                            <span class="text-lg font-bold text-purple-600">تا</span>
+                            <span id="resHighW">۷۲</span>
+                        </div>
+                        <span class="text-xs text-purple-600 font-bold block mt-1">کیلوگرم</span>
                     </div>
 
                     <div class="space-y-2 text-right text-xs">
-                        <div class="flex justify-between p-2 rounded-lg bg-slate-50">
-                            <span class="text-slate-500">فرمول دواین (Devine):</span><span class="font-bold text-slate-800" id="resDevine">۷۰.۵ kg</span>
+                        <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+                            <span class="text-slate-600 font-medium">فرمول دواین (Devine):</span>
+                            <span class="font-bold text-slate-800" id="resDevine">۷۰.۵ کیلوگرم</span>
                         </div>
-                        <div class="flex justify-between p-2 rounded-lg bg-slate-50">
-                            <span class="text-slate-500">فرمول رابینسون (Robinson):</span><span class="font-bold text-slate-800" id="resRobinson">۶۹.۰ kg</span>
+                        <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+                            <span class="text-slate-600 font-medium">فرمول رابینسون (Robinson):</span>
+                            <span class="font-bold text-slate-800" id="resRobinson">۶۹.۰ کیلوگرم</span>
                         </div>
-                        <div class="flex justify-between p-2 rounded-lg bg-slate-50">
-                            <span class="text-slate-500">بازه سلامت بر اساس BMI:</span><span class="font-bold text-emerald-700" id="resBmiRange">۵۷ - ۷۶ kg</span>
+                        <div class="flex justify-between items-center p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-100">
+                            <span class="text-emerald-900 font-medium">بازه سلامت بر اساس BMI:</span>
+                            <span class="font-bold text-emerald-700" id="resBmiRange">۵۷ تا ۷۶ کیلوگرم</span>
                         </div>
                     </div>
                 </div>
@@ -213,7 +227,6 @@
             </div>
         </div>
 
-        <!-- محتوای سئو و جدول قد و وزن ایده‌آل -->
         <article class="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-8">
             <div>
                 <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-3">آشنایی با فرمول‌های علمی وزن ایده‌آل (Ideal Body Weight)</h2>
@@ -222,7 +235,6 @@
                 </p>
             </div>
 
-            <!-- جدول مرجع قد و وزن -->
             <div>
                 <h3 class="text-base font-bold text-slate-900 mb-3">جدول سریع وزن ایده‌آل بر اساس قد (خانم‌ها و آقایان)</h3>
                 <div class="overflow-x-auto">
@@ -238,39 +250,39 @@
                         <tbody class="divide-y divide-slate-100 text-slate-600">
                             <tr>
                                 <td class="p-3 font-semibold text-slate-800">۱۵۵ سانتی‌متر</td>
-                                <td class="p-3">۵۱ تا ۵۵ kg</td>
-                                <td class="p-3 font-bold text-purple-600">۴۶ تا ۵۰ kg</td>
-                                <td class="p-3">۴۵ تا ۵۹ kg</td>
+                                <td class="p-3">۵۱ تا ۵۵ کیلوگرم</td>
+                                <td class="p-3 font-bold text-purple-600">۴۶ تا ۵۰ کیلوگرم</td>
+                                <td class="p-3">۴۵ تا ۵۹ کیلوگرم</td>
                             </tr>
                             <tr class="bg-slate-50/50">
                                 <td class="p-3 font-semibold text-slate-800">۱۶۰ سانتی‌متر</td>
-                                <td class="p-3">۵۵ تا ۶۰ kg</td>
-                                <td class="p-3 font-bold text-purple-600">۵۰ تا ۵۵ kg</td>
-                                <td class="p-3">۴۷ تا ۶۴ kg</td>
+                                <td class="p-3">۵۵ تا ۶۰ کیلوگرم</td>
+                                <td class="p-3 font-bold text-purple-600">۵۰ تا ۵۵ کیلوگرم</td>
+                                <td class="p-3">۴۷ تا ۶۴ کیلوگرم</td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-semibold text-slate-800">۱۶۵ سانتی‌متر</td>
-                                <td class="p-3">۶۰ تا ۶۵ kg</td>
-                                <td class="p-3 font-bold text-purple-600">۵۴ تا ۵۹ kg</td>
-                                <td class="p-3">۵۰ تا ۶۸ kg</td>
+                                <td class="p-3">۶۰ تا ۶۵ کیلوگرم</td>
+                                <td class="p-3 font-bold text-purple-600">۵۴ تا ۵۹ کیلوگرم</td>
+                                <td class="p-3">۵۰ تا ۶۸ کیلوگرم</td>
                             </tr>
                             <tr class="bg-slate-50/50">
                                 <td class="p-3 font-semibold text-slate-800">۱۷۰ سانتی‌متر</td>
-                                <td class="p-3 font-bold text-purple-600">۶۵ تا ۷۰ kg</td>
-                                <td class="p-3">۵۹ تا ۶۴ kg</td>
-                                <td class="p-3">۵۴ تا ۷۲ kg</td>
+                                <td class="p-3 font-bold text-purple-600">۶۵ تا ۷۰ کیلوگرم</td>
+                                <td class="p-3">۵۹ تا ۶۴ کیلوگرم</td>
+                                <td class="p-3">۵۴ تا ۷۲ کیلوگرم</td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-semibold text-slate-800">۱۷۵ سانتی‌متر</td>
-                                <td class="p-3 font-bold text-purple-600">۷۰ تا ۷۵ kg</td>
-                                <td class="p-3">۶۳ تا ۶۸ kg</td>
-                                <td class="p-3">۵۷ تا ۷۶ kg</td>
+                                <td class="p-3 font-bold text-purple-600">۷۰ تا ۷۵ کیلوگرم</td>
+                                <td class="p-3">۶۳ تا ۶۸ کیلوگرم</td>
+                                <td class="p-3">۵۷ تا ۷۶ کیلوگرم</td>
                             </tr>
                             <tr class="bg-slate-50/50">
                                 <td class="p-3 font-semibold text-slate-800">۱۸۰ سانتی‌متر</td>
-                                <td class="p-3 font-bold text-purple-600">۷۵ تا ۸۰ kg</td>
-                                <td class="p-3">۶۸ تا ۷۳ kg</td>
-                                <td class="p-3">۶۰ تا ۸۱ kg</td>
+                                <td class="p-3 font-bold text-purple-600">۷۵ تا ۸۰ کیلوگرم</td>
+                                <td class="p-3">۶۸ تا ۷۳ کیلوگرم</td>
+                                <td class="p-3">۶۰ تا ۸۱ کیلوگرم</td>
                             </tr>
                         </tbody>
                     </table>
@@ -311,13 +323,14 @@
             const minBmiWeight = 18.5 * (hM * hM);
             const maxBmiWeight = 24.9 * (hM * hM);
 
-            const lowAvg = Math.min(devine, robinson) - 2;
-            const highAvg = Math.max(devine, robinson) + 2;
+            const lowAvg = Math.round(Math.min(devine, robinson) - 2);
+            const highAvg = Math.round(Math.max(devine, robinson) + 2);
 
-            document.getElementById('resAvgWeight').innerText = fmt0.format(lowAvg.toFixed(0)) + ' تا ' + fmt0.format(highAvg.toFixed(0));
-            document.getElementById('resDevine').innerText = fmt1.format(devine) + ' kg';
-            document.getElementById('resRobinson').innerText = fmt1.format(robinson) + ' kg';
-            document.getElementById('resBmiRange').innerText = fmt0.format(minBmiWeight.toFixed(0)) + ' تا ' + fmt0.format(maxBmiWeight.toFixed(0)) + ' kg';
+            document.getElementById('resLowW').innerText = fmt0.format(lowAvg);
+            document.getElementById('resHighW').innerText = fmt0.format(highAvg);
+            document.getElementById('resDevine').innerText = fmt1.format(devine) + ' کیلوگرم';
+            document.getElementById('resRobinson').innerText = fmt1.format(robinson) + ' کیلوگرم';
+            document.getElementById('resBmiRange').innerText = fmt0.format(Math.round(minBmiWeight)) + ' تا ' + fmt0.format(Math.round(maxBmiWeight)) + ' کیلوگرم';
         }
 
         document.getElementById('copyLinkBtn').addEventListener('click', () => {
@@ -333,20 +346,38 @@
             });
         });
 
-        document.getElementById('downloadStoryBtn').addEventListener('click', () => {
+        document.getElementById('downloadStoryBtn').addEventListener('click', async () => {
             const card = document.getElementById('captureCard');
             const btnText = document.getElementById('storyBtnText');
             const original = btnText.innerText;
-            if (typeof html2canvas === 'undefined') return;
-            btnText.innerText = 'در حال ساخت تصویر... ⏳';
-            html2canvas(card, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+
+            if (typeof htmlToImage === 'undefined') {
+                alert('در حال آماده‌سازی موتور تصویر... لطفاً ۲ ثانیه دیگر تلاش کنید.');
+                return;
+            }
+
+            btnText.innerText = 'در حال ساخت تصویر باکیفیت... ⏳';
+            try {
+                await document.fonts.ready;
+                const dataUrl = await htmlToImage.toPng(card, {
+                    pixelRatio: 2.5,
+                    backgroundColor: '#ffffff',
+                    cacheBust: true,
+                    style: {
+                        letterSpacing: '0px',
+                        fontFamily: 'Vazirmatn, sans-serif'
+                    }
+                });
                 const link = document.createElement('a');
                 link.download = 'fittools-ideal-weight.png';
-                link.href = canvas.toDataURL('image/png');
+                link.href = dataUrl;
                 link.click();
                 btnText.innerText = 'تصویر دانلود شد! ✅';
                 setTimeout(() => { btnText.innerText = original; }, 2500);
-            }).catch(() => { btnText.innerText = original; });
+            } catch (err) {
+                console.error(err);
+                btnText.innerText = original;
+            }
         });
 
         iwForm.addEventListener('submit', (e) => { e.preventDefault(); calcIW(); });

@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="u8tjCuSxf742Hu8bVrDAajukmffHzFqgb_4knQFPgP8" />
+    <meta name="google-site-verification" content="u8tjCuSxf742Hu8bVrDAajukmffHzFqgb_4knQFPgP8">
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="HfwaLx+GOlP+oTMjMrbQxg" async></script>
     <title>محاسبه کالری روزانه برای لاغری و تثبیت وزن (آنلاین) | فیت‌تولز</title>
-    <meta name="description" content="محاسبه دقیق کالری مصرفی روزانه (TDEE و BMR)، کالری چربی‌سوزی، تاریخ رسیدن به وزن هدف و تفکیک پروتئین و کربوهیدرات با فرمول میفلین به صورت رایگان.">
+    <meta name="description" content="محاسبه دقیق کالری مصرفی روزانه (TDEE و BMR)، کالری چربی‌سوزی، تاریخ رسیدن به وزن هدف و تفکیک ماکروهای پروتئین و کربوهیدرات با فرمول میفلین به صورت رایگان.">
     <link rel="canonical" href="https://fittools.ir/calorie.html">
+    
+    <!-- Open Graph / Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fittools.ir/calorie.html">
+    <meta property="og:title" content="محاسبه آنلاین کالری روزانه و ماکروها | FitTools">
+    <meta property="og:description" content="کالری لاغری، تثبیت وزن و تاریخ دقیق رسیدن به هدف وزنی‌تان را بسنجید">
+    <meta property="og:image" content="https://fittools.ir/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Favicon یکپارچه -->
     <link rel="icon" type="image/png" href="logo.png">
-
+    <link rel="apple-touch-icon" href="logo.png">
+    
+    <!-- Fonts & Tailwind CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -19,8 +31,18 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
-                    colors: { brand: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#047857' } }
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
                 }
             }
         }
@@ -28,58 +50,13 @@
     <style>
         body { font-family: 'Vazirmatn', sans-serif; }
         input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     </style>
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebApplication",
-          "name": "محاسبه‌گر کالری و ماکرو روزانه | فیت‌تولز",
-          "url": "https://fittools.ir/calorie.html",
-          "applicationCategory": "HealthApplication",
-          "operatingSystem": "All",
-          "description": "محاسبه آنلاین BMR، کالری مصرفی روزانه (TDEE)، تاریخ رسیدن به وزن هدف و تفکیک ماکروها برای لاغری و عضله‌سازی"
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://fittools.ir/" },
-            { "@type": "ListItem", "position": 2, "name": "محاسبه کالری روزانه", "item": "https://fittools.ir/calorie.html" }
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "کسری کالری استاندارد برای لاغری بدون افت عضله چقدر است؟",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "کسری ایده‌آل بین ۳۰۰ تا ۵۰۰ کالری کمتر از TDEE است. این میزان کسری به شما اجازه می‌دهد حدود نیم کیلوگرم چربی خالص در هفته بسوزانید."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "آیا دریافت کالری کمتر از BMR مجاز است؟",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "خیر؛ مصرف کالری کمتر از نرخ متابولیسم پایه (BMR) در طولانی‌مدت موجب کاهش سوخت‌وساز، ریزش مو و استپ وزنی می‌شود."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "فرمول میفلین-سنت جور چیست؟",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "فرمول Mifflin-St Jeor استانداردترین معادله علمی برای تخمین کالری پایه بر اساس وزن، قد، سن و جنسیت است."
-              }
-            }
-          ]
-        }
-      ]
-    }
+    {"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "محاسبه کالری روزانه و ماکروها | فیت‌تولز", "url": "https://fittools.ir/calorie.html", "applicationCategory": "HealthApplication", "operatingSystem": "All", "description": "محاسبه آنلاین BMR، کالری مصرفی روزانه (TDEE)، تاریخ رسیدن به وزن هدف و تفکیک ماکروها (پروتئین، کربوهیدرات، چربی) برای لاغری و عضله‌سازی"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "خانه", "item": "https://fittools.ir/"}, {"@type": "ListItem", "position": 2, "name": "محاسبه کالری روزانه", "item": "https://fittools.ir/calorie.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "کسری کالری استاندارد برای لاغری چقدر است؟", "acceptedAnswer": {"@type": "Answer", "text": "کسری ایده‌آل بین ۳۰۰ تا ۵۰۰ کالری در روز کمتر از TDEE است که منجر به کاهش حدود ۰.۵ کیلوگرم چربی در هفته بدون افت عضله می‌شود."}}, {"@type": "Question", "name": "آیا دریافت کالری کمتر از BMR مجاز است؟", "acceptedAnswer": {"@type": "Answer", "text": "خیر، دریافت کالری کمتر از BMR در طولانی‌مدت موجب کاهش متابولیسم، ریزش مو و استپ وزنی می‌شود."}}, {"@type": "Question", "name": "فرمول Mifflin-St Jeor چیست؟", "acceptedAnswer": {"@type": "Answer", "text": "این فرمول یکی از دقیق‌ترین معادلات بالینی جهان برای محاسبه متابولیسم پایه (BMR) بر اساس قد، وزن، سن و جنسیت است."}}]}]}
     </script>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
@@ -88,25 +65,29 @@
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
+                <!-- لوگو -->
                 <a href="index.html" class="flex items-center gap-2.5 group">
-                    <img src="logo.png" alt="FitTools Logo" onerror="this.style.display='none'" class="w-10 h-10 rounded-xl shadow-sm group-hover:scale-105 transition-transform object-cover">
+                    <img src="logo.png" alt="لوگو فیت‌تولز" class="w-10 h-10 rounded-xl shadow-sm group-hover:scale-105 transition-transform object-cover" width="40" height="40">
                     <div>
                         <span class="font-extrabold text-xl tracking-tight text-slate-900">FitTools<span class="text-emerald-600">.ir</span></span>
                         <span class="hidden sm:block text-[11px] text-slate-400 font-medium">جعبه‌ابزار هوشمند تناسب اندام</span>
                     </div>
                 </a>
 
+                <!-- منوی دسکتاپ -->
                 <nav class="hidden md:flex items-center gap-1">
                     <a href="index.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">خانه</a>
-                    <a href="calorie.html" class="px-3 py-2 text-sm transition-colors text-emerald-600 font-bold border-b-2 border-emerald-600">محاسبه کالری و ماکرو</a>
-                    <a href="water.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">آب مصرفی</a>
-                    <a href="body-fat.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">درصد چربی</a>
-                    <a href="ideal-weight.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">وزن ایده‌آل</a>
-                    <a href="heart-rate.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">ضربان قلب ورزشی</a>
+<a href="calorie.html" class="px-3 py-2 text-sm transition-colors text-emerald-600 font-bold border-b-2 border-emerald-600">محاسبه کالری و ماکرو</a>
+<a href="water.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">آب مصرفی</a>
+<a href="body-fat.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">درصد چربی</a>
+<a href="ideal-weight.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">وزن ایده‌آل</a>
+<a href="heart-rate.html" class="px-3 py-2 text-sm transition-colors text-slate-600 hover:text-emerald-600">ضربان قلب ورزشی</a>
+
                 </nav>
 
+                <!-- دکمه منوی موبایل -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none" aria-label="منو">
+                    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none" aria-label="منوی موبایل">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
@@ -115,28 +96,42 @@
             </div>
         </div>
 
+        <!-- منوی بازشونده موبایل -->
         <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-2 pb-4 space-y-1 shadow-lg">
             <a href="index.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">خانه</a>
-            <a href="calorie.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors bg-emerald-50 text-emerald-600 font-bold">محاسبه کالری و ماکرو</a>
-            <a href="water.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">آب مصرفی</a>
-            <a href="body-fat.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">درصد چربی</a>
-            <a href="ideal-weight.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">وزن ایده‌آل</a>
-            <a href="heart-rate.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">ضربان قلب ورزشی</a>
+<a href="calorie.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors bg-emerald-50 text-emerald-600 font-bold">محاسبه کالری و ماکرو</a>
+<a href="water.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">آب مصرفی</a>
+<a href="body-fat.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">درصد چربی</a>
+<a href="ideal-weight.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">وزن ایده‌آل</a>
+<a href="heart-rate.html" class="block px-4 py-2.5 rounded-lg text-sm transition-colors text-slate-700 hover:bg-slate-100">ضربان قلب ورزشی</a>
+
         </div>
     </header>
-    
+    <script>
+        const mBtn = document.getElementById('mobileMenuBtn');
+        const mMenu = document.getElementById('mobileMenu');
+        if (mBtn && mMenu) {
+            mBtn.addEventListener('click', () => {
+                mMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+
     <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex-grow">
+        <!-- عنوان و مسیر -->
         <div class="mb-6">
-            <div class="flex items-center gap-2 text-xs text-slate-400 mb-2">
+            <nav class="flex items-center gap-2 text-xs text-slate-400 mb-2" aria-label="Breadcrumb">
                 <a href="index.html" class="hover:text-emerald-600">خانه</a>
                 <span>/</span>
                 <span class="text-slate-600 font-medium">محاسبه کالری روزانه</span>
-            </div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">محاسبه کالری، ماکرو و زمان رسیدن به وزن هدف</h1>
-            <p class="text-sm text-slate-500 mt-1">با فرمول استاندارد Mifflin-St Jeor میزان کالری مورد نیاز و تاریخ دقیق رسیدن به وزن دلخواهتان را ببینید.</p>
+            </nav>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">محاسبه کالری روزانه، ماکروها و زمان رسیدن به وزن هدف</h1>
+            <p class="text-sm text-slate-500 mt-1">با فرمول علمی Mifflin-St Jeor میزان کالری مجاز روزانه برای لاغری، تثبیت یا حجم را به دست آورید.</p>
         </div>
 
+        <!-- بدنه ماشین‌حساب -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- فرم ورودی (ستون ۷ از ۱۲) -->
             <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm h-fit">
                 <h2 class="text-base font-bold text-slate-800 mb-5 flex items-center gap-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
@@ -144,6 +139,7 @@
                 </h2>
 
                 <form id="calorieForm" class="space-y-4">
+                    <!-- جنسیت -->
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1.5">جنسیت</label>
                         <div class="grid grid-cols-2 gap-3">
@@ -158,6 +154,7 @@
                         </div>
                     </div>
 
+                    <!-- سن، قد، وزن فعلی، وزن هدف -->
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">سن (سال)</label>
@@ -177,6 +174,7 @@
                         </div>
                     </div>
 
+                    <!-- سطح فعالیت -->
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">میزان فعالیت روزانه</label>
                         <select id="activity" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 text-sm font-medium bg-white">
@@ -193,6 +191,7 @@
                     </button>
                 </form>
 
+                <!-- دکمه‌های اشتراک‌گذاری -->
                 <div class="mt-6 pt-5 border-t border-slate-100">
                     <span class="block text-xs font-bold text-slate-700 mb-2.5">اشتراک‌گذاری نتیجه با دوستان یا مربی:</span>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -208,6 +207,7 @@
                 </div>
             </div>
 
+            <!-- کارت نتایج (ستون ۵ از ۱۲) -->
             <div class="lg:col-span-5 space-y-4">
                 <div id="captureCard" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm relative overflow-hidden">
                     <div class="flex items-center justify-between mb-4">
@@ -215,22 +215,27 @@
                         <span class="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100">FitTools.ir ⚡</span>
                     </div>
                     
+                    <!-- کالری تثبیت -->
                     <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 mb-3 text-center">
                         <span class="text-xs text-slate-500 font-medium block mb-1">کالری تثبیت وزن فعلی (TDEE)</span>
                         <div class="text-3xl font-black text-slate-900 tracking-tight" id="resTdee">۲,۲۴۰</div>
                         <span class="text-[11px] text-slate-400">کیلوکالری در روز</span>
                     </div>
 
+                    <!-- تاریخ رسیدن به وزن هدف -->
                     <div id="targetDateBox" class="bg-gradient-to-l from-emerald-50 to-teal-50 rounded-xl p-3.5 border border-emerald-200 mb-4">
                         <div class="flex items-start gap-2.5">
                             <span class="text-xl mt-0.5">🎯</span>
                             <div>
                                 <span class="text-[11px] text-emerald-800 font-bold block" id="targetSummaryTitle">پیش‌بینی زمان رسیدن به ۷۰ کیلوگرم:</span>
-                                <p class="text-xs text-emerald-950 font-extrabold mt-0.5 leading-relaxed" id="resTargetDate">در حال محاسبه...</p>
+                                <p class="text-xs text-emerald-950 font-extrabold mt-0.5 leading-relaxed" id="resTargetDate">
+                                    در حال محاسبه...
+                                </p>
                             </div>
                         </div>
                     </div>
 
+                    <!-- بازه‌های هدف -->
                     <div class="space-y-2 text-xs">
                         <div class="flex items-center justify-between p-2.5 rounded-lg bg-emerald-50/70 border border-emerald-100">
                             <span class="text-emerald-900 font-medium">کاهش وزن ملایم (۰.۲۵ کیلو/هفته)</span>
@@ -246,6 +251,7 @@
                         </div>
                     </div>
 
+                    <!-- ماکروها برای کالری هدف -->
                     <div class="mt-5 pt-4 border-t border-slate-100">
                         <span class="text-xs font-bold text-slate-700 block mb-2" id="macroTitle">تقسیم ماکرو پیشنهادی روزانه:</span>
                         <div class="grid grid-cols-3 gap-2 text-center text-xs">
@@ -265,10 +271,11 @@
                     </div>
                 </div>
 
+                <!-- باکس پیشنهاد مکمل و تجهیزات -->
                 <div class="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-2xl p-5 text-white shadow-md">
                     <span class="text-[11px] font-bold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded-full inline-block mb-2">ابزارهای موفقیت در رژیم</span>
                     <h3 class="text-sm font-bold mb-1">دقیق‌تر وزن‌کشی و عضله‌سازی کنید</h3>
-                    <p class="text-xs text-white/85 mb-3.5 leading-relaxed">داشتن یک ترازوی دیجیتال آشپزخانه برای وزن کردن برنج و مرغ، شانس رسیدن به وزن هدف را ۲ برابر می‌کند.</p>
+                    <p class="text-xs text-white/85 mb-3.5 leading-relaxed">داشتن یک ترازوی دیجیتال آشپزخانه برای اندازه‌گیری گرمی مواد غذایی، شانس رسیدن به هدف را ۲ برابر می‌کند.</p>
                     <div class="space-y-2">
                         <a href="https://www.digikala.com/search/category-kitchen-scale/" target="_blank" rel="nofollow noopener" class="block w-full text-center bg-white text-emerald-900 font-bold text-xs py-2.5 rounded-xl shadow-sm hover:bg-emerald-50 transition-colors">
                             🛒 مشاهده پرفروش‌ترین ترازوهای دیجیتال آشپزخانه
@@ -281,15 +288,16 @@
             </div>
         </div>
 
-        <!-- محتوای جامع سئو و جدول مرجع -->
+        <!-- بخش محتوای متنی سئو و جدول مرجع کالری -->
         <article class="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-8">
             <div>
                 <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-3">فرمول میفلین (Mifflin-St Jeor) چگونه کالری روزانه را محاسبه می‌کند؟</h2>
                 <p class="text-sm text-slate-600 leading-relaxed">
-                    محاسبه‌گر کالری فیت‌تولز از فرمول استاندارد <strong>میفلین-سنت جور</strong> استفاده می‌کند که طبق تحقیقات آکادمی تغذیه و دیابت آمریکا، دقیق‌ترین فرمول بدون نیاز به اسکن آزمایشگاهی است. در این الگوریتم، ابتدا نرخ سوخت‌وساز پایه (BMR) یعنی کالری مورد نیاز بدن برای زنده ماندن در حالت استراحت مطلق به دست می‌آید و سپس با ضرب در «ضریب فعالیت روزانه»، کالری نهایی تثبیت وزن (TDEE) استخراج می‌شود.
+                    محاسبه‌گر کالری فیت‌تولز از فرمول استاندارد <strong>میفلین-سنت جور</strong> استفاده می‌کند که طبق تحقیقات رسمی آکادمی تغذیه و دیابت آمریکا، دقیق‌ترین روش برآورد نیاز انرژی بدون نیاز به اتاق کالری‌متری آزمایشگاهی است. در این فرآیند، ابتدا نرخ سوخت‌وساز پایه (BMR) یعنی کالری مورد نیاز بدن برای زنده ماندن و تنفس در حالت استراحت مطلق محاسبه شده و سپس با ضرب در «ضریب فعالیت روزانه»، کل انرژی مصرفی روزانه (TDEE) تعیین می‌گردد.
                 </p>
             </div>
 
+            <!-- جدول مرجع سئو -->
             <div>
                 <h3 class="text-base font-bold text-slate-900 mb-3">جدول میانگین کالری روزانه مورد نیاز بر اساس قد و وزن</h3>
                 <div class="overflow-x-auto">
@@ -337,23 +345,28 @@
                 </div>
             </div>
 
+            <!-- سوالات متداول سئو -->
             <div>
                 <h3 class="text-base font-bold text-slate-900 mb-4">سوالات متداول محاسبه کالری و رژیم</h3>
                 <div class="space-y-3 text-xs">
                     <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
                         <h4 class="font-bold text-slate-800 mb-1">کسری کالری استاندارد برای لاغری بدون افت عضله چقدر است؟</h4>
-                        <p class="text-slate-600 leading-relaxed">کسری ایده‌آل بین ۳۰۰ تا ۵۰۰ کالری کمتر از TDEE است. این میزان کسری به شما اجازه می‌دهد حدود ۰.۵ کیلوگرم چربی خالص در هفته بسوزانید بدون آنکه به بافت عضلانی آسیبی وارد شود.</p>
+                        <p class="text-slate-600 leading-relaxed">
+                            کسری ایده‌آل بین ۳۰۰ تا ۵۰۰ کالری کمتر از TDEE است. این کسری به شما اجازه می‌دهد حدود ۰.۵ کیلوگرم بافت چربی خالص را در هفته بسوزانید در حالی که توده عضلانی حفظ می‌شود.
+                        </p>
                     </div>
                     <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
                         <h4 class="font-bold text-slate-800 mb-1">آیا دریافت کالری کمتر از BMR مجاز است؟</h4>
-                        <p class="text-slate-600 leading-relaxed">خیر؛ مصرف کالری کمتر از BMR در طولانی‌مدت موجب کاهش متابولیسم، ریزش مو، به هم ریختن تعادل هورمونی و توقف وزن‌کاهی (استپ وزنی) می‌شود.</p>
+                        <p class="text-slate-600 leading-relaxed">
+                            خیر؛ مصرف کالری کمتر از BMR در طولانی‌مدت موجب کاهش نرخ متابولیسم، ریزش مو، به هم ریختن تعادل هورمونی و توقف کامل روند چربی‌سوزی (استپ وزنی) می‌شود.
+                        </p>
                     </div>
                 </div>
             </div>
         </article>
 
         <!-- ابزارهای مکمل -->
-        <section class="mt-8 bg-white rounded-2xl border border-slate-200 p-6">
+        <section class="mt-12 bg-white rounded-2xl border border-slate-200 p-6">
             <h3 class="text-base font-bold text-slate-800 mb-4">گام بعدی: سایر شاخص‌های بدنتان را بسنجید</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <a href="body-fat.html" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-100 hover:border-emerald-300 hover:bg-slate-50 transition-all">
@@ -375,17 +388,14 @@
     </main>
 
     <script>
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        });
-
         const form = document.getElementById('calorieForm');
         const fmt = new Intl.NumberFormat('fa-IR');
 
         function loadFromUrl() {
             const params = new URLSearchParams(window.location.search);
             if (params.has('g')) {
-                if (params.get('g') === 'female') document.getElementById('gFemale').checked = true;
+                const g = params.get('g');
+                if (g === 'female') document.getElementById('gFemale').checked = true;
                 else document.getElementById('gMale').checked = true;
             }
             if (params.has('a')) document.getElementById('age').value = params.get('a');
@@ -435,7 +445,7 @@
             titleEl.innerText = `پیش‌بینی زمان رسیدن به وزن ${fmt.format(tw)} کیلوگرم:`;
 
             if (diffWeight < 0.3) {
-                dateEl.innerText = 'شما همین الان در وزن ایده‌آل و هدف خود قرار دارید! کافیست کالری تثبیت را رعایت کنید.';
+                dateEl.innerText = 'شما هم‌اکنون در وزن هدف خود قرار دارید! کافیست کالری تثبیت را رعایت کنید.';
             } else {
                 const weeklyRate = tw < w ? 0.5 : 0.35;
                 const weeksNeeded = diffWeight / weeklyRate;
@@ -444,9 +454,14 @@
                 const targetDate = new Date();
                 targetDate.setDate(targetDate.getDate() + daysNeeded);
 
-                const persianDate = new Intl.DateTimeFormat('fa-IR', { day: 'numeric', month: 'long', year: 'numeric' }).format(targetDate);
+                const persianDate = new Intl.DateTimeFormat('fa-IR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }).format(targetDate);
+
                 const actionText = tw < w ? `کاهش ${fmt.format(Number(diffWeight.toFixed(1)))} کیلوگرم` : `افزایش ${fmt.format(Number(diffWeight.toFixed(1)))} کیلوگرم`;
-                dateEl.innerText = `با رعایت رژیم استاندارد (${fmt.format(activeCal)} کالری)، در تاریخ «${persianDate}» (حدود ${fmt.format(Math.ceil(weeksNeeded))} هفته دیگر) به هدف ${actionText} می‌رسید!`;
+                dateEl.innerText = `با رعایت کالری استاندارد (${fmt.format(activeCal)} kcal)، در تاریخ «${persianDate}» (حدود ${fmt.format(Math.ceil(weeksNeeded))} هفته دیگر) به هدف ${actionText} می‌رسید!`;
             }
         }
 
@@ -459,6 +474,7 @@
             const act = document.getElementById('activity').value;
 
             const shareUrl = `${window.location.origin}${window.location.pathname}?g=${gender}&a=${age}&h=${h}&w=${w}&tw=${tw}&act=${act}`;
+            
             navigator.clipboard.writeText(shareUrl).then(() => {
                 const btnText = document.getElementById('copyBtnText');
                 const original = btnText.innerText;
@@ -471,19 +487,33 @@
             const card = document.getElementById('captureCard');
             const btnText = document.getElementById('storyBtnText');
             const original = btnText.innerText;
-            if (typeof html2canvas === 'undefined') return;
+
+            if (typeof html2canvas === 'undefined') {
+                alert('کتابخانه تصویر در حال بارگذاری است؛ لطفاً ۲ ثانیه بعد دوباره بزنید.');
+                return;
+            }
+
             btnText.innerText = 'در حال ساخت تصویر... ⏳';
-            html2canvas(card, { scale: 2, backgroundColor: '#ffffff', useCORS: true }).then(canvas => {
+            html2canvas(card, {
+                scale: 2,
+                backgroundColor: '#ffffff',
+                useCORS: true
+            }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'fittools-calorie-plan.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 btnText.innerText = 'تصویر دانلود شد! ✅';
                 setTimeout(() => { btnText.innerText = original; }, 2500);
-            }).catch(() => { btnText.innerText = original; });
+            }).catch(() => {
+                btnText.innerText = original;
+            });
         });
 
-        form.addEventListener('submit', (e) => { e.preventDefault(); calc(); });
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            calc();
+        });
         form.addEventListener('input', calc);
 
         loadFromUrl();
@@ -494,19 +524,21 @@
     <footer class="bg-slate-900 text-slate-400 mt-auto pt-12 pb-8 border-t border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- ستون معرفی -->
                 <div class="md:col-span-2 space-y-3">
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl">⚡</span>
+                    <div class="flex items-center gap-2.5">
+                        <img src="logo.png" alt="FitTools Logo" class="w-8 h-8 rounded-lg object-cover" width="32" height="32">
                         <span class="font-extrabold text-xl text-white">FitTools<span class="text-emerald-500">.ir</span></span>
                     </div>
                     <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-                        فیت‌تولز یک جعبه‌ابزار رایگان و بدون نیاز به ثبت‌نام برای محاسبه دقیق شاخص‌های سلامت، کالری، ماکروها و آب مصرفی است. تمام پردازش‌ها کاملاً آفلاین و در مرورگر شما انجام می‌شود.
+                        فیت‌تولز یک جعبه‌ابزار رایگان و بدون نیاز به ثبت‌نام برای محاسبه دقیق شاخص‌های سلامت، کالری، ماکروها، آب مصرفی و چربی بدن است. تمام پردازش‌ها کاملاً کلاینت‌ساید و درون مرورگر شما انجام می‌شود.
                     </p>
                     <p class="text-xs text-slate-500">
-                        سلب مسئولیت: نتایج این ابزارها صرفاً جنبه آموزشی و راهنما دارند و جایگزین توصیه پزشک یا متخصص تغذیه نیستند.
+                        سلب مسئولیت پزشکی: اطلاعات و نتایج ارائه شده در این سایت صرفاً جنبه آموزشی و آگاهی‌بخشی دارند و نباید به عنوان توصیه پزشکی یا تجویز درمانی تلقی شوند.
                     </p>
                 </div>
 
+                <!-- ستون ابزارها -->
                 <div>
                     <h4 class="text-white font-bold text-sm mb-3">ابزارهای سلامت</h4>
                     <ul class="space-y-2 text-sm">
@@ -518,19 +550,20 @@
                     </ul>
                 </div>
 
+                <!-- ستون دسترسی سریع -->
                 <div>
-                    <h4 class="text-white font-bold text-sm mb-3">دسترسی سریع</h4>
+                    <h4 class="text-white font-bold text-sm mb-3">درباره پلتفرم</h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="index.html" class="hover:text-emerald-400 transition-colors">صفحه اصلی</a></li>
-                        <li><a href="calorie.html" class="hover:text-emerald-400 transition-colors">کالری شمار آنلاین لاغری</a></li>
-                        <li><a href="body-fat.html" class="hover:text-emerald-400 transition-colors">فرمول چربی‌سنجی ارتش آمریکا</a></li>
+                        <li><a href="calorie.html" class="hover:text-emerald-400 transition-colors">راهنمای لاغری و تثبیت</a></li>
+                        <li><span class="text-slate-500">طراحی شده برای بیشترین سرعت لود</span></li>
                     </ul>
                 </div>
             </div>
 
             <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <p>© ۲۰۲۶ تمامی حقوق برای وب‌سایت FitTools.ir محفوظ است.</p>
-                <p>ساخته شده برای سرعت و سادگی بدون نیاز به عضویت</p>
+                <p>سریع، سبک و بدون ثبت‌نام</p>
             </div>
         </div>
     </footer>

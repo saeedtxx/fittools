@@ -26,7 +26,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <!-- موتور مدرن خروجی تصویر با پشتیبانی کامل از فونت فارسی و چسبندگی حروف RTL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -53,6 +54,10 @@
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
+        }
+        .capture-fix {
+            letter-spacing: 0px !important;
+            font-feature-settings: "kern" 1, "liga" 1;
         }
     </style>
     <script type="application/ld+json">
@@ -124,7 +129,7 @@
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 جعبه‌ابزار آنلاین و رایگان سلامت و تغذیه
             </div>
-            <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4">
+            <h1 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight mb-4">
                 شاخص‌های بدنت را <span class="text-emerald-600">در ۳ ثانیه</span> دقیق بسنج
             </h1>
             <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
@@ -278,7 +283,7 @@
                 </div>
                 <div class="bg-white rounded-xl border border-slate-200 p-4">
                     <h4 class="font-bold text-sm text-slate-800 mb-1">چگونه نتایج محاسبات خود را برای مربی یا دوستان بفرستم؟</h4>
-                    <p class="text-xs text-slate-600 leading-relaxed">در انتهای هر ماشین‌حساب، دکمه «کپی لینک اختصاصی» و دکمه «دانلود کارت استوری» قرار داده شده که نتیجه شما را به صورت عکس باکیفیت ذخیره می‌کند.</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">در انتهای هر ماشین‌حساب، دکمه «کپی لینک اختصاصی» و دکمه «دانلود کارت استوری» قرار داده شده که نتیجه شما را به صورت عکس باکیفیت و خوانا ذخیره می‌کند.</p>
                 </div>
             </div>
         </section>

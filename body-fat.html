@@ -26,7 +26,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <!-- موتور مدرن خروجی تصویر با پشتیبانی کامل از فونت فارسی و چسبندگی حروف RTL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -53,6 +54,10 @@
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
+        }
+        .capture-fix {
+            letter-spacing: 0px !important;
+            font-feature-settings: "kern" 1, "liga" 1;
         }
     </style>
     <script type="application/ld+json">
@@ -124,12 +129,11 @@
                 <span>/</span>
                 <span class="text-slate-600 font-medium">درصد چربی بدن</span>
             </nav>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">محاسبه آنلاین درصد چربی و عضله خالص (US Navy)</h1>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">محاسبه آنلاین درصد چربی و عضله خالص (US Navy)</h1>
             <p class="text-sm text-slate-500 mt-1">روش بالینی نیروی دریایی آمریکا برای تفکیک وزن عضله از چربی و محاسبه فاصله شما تا فرم فیتنس.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <!-- فرم ورودی -->
             <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm h-fit">
                 <h2 class="text-base font-bold text-slate-800 mb-5 flex items-center gap-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
@@ -186,7 +190,6 @@
                     </button>
                 </form>
 
-                <!-- دکمه‌های اشتراک‌گذاری -->
                 <div class="mt-6 pt-5 border-t border-slate-100">
                     <span class="block text-xs font-bold text-slate-700 mb-2.5">اشتراک‌گذاری آنالیز با مربی یا دوستان:</span>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -202,21 +205,20 @@
                 </div>
             </div>
 
-            <!-- کارت نتایج -->
+            <!-- کارت نتایج استاندارد برای خروجی استوری -->
             <div class="lg:col-span-5 space-y-4">
-                <div id="captureCard" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm text-center relative overflow-hidden">
+                <div id="captureCard" class="capture-fix bg-white rounded-2xl border border-slate-200 p-6 shadow-sm text-center relative overflow-hidden" dir="rtl">
                     <div class="flex items-center justify-between mb-4">
                         <h2 class="text-base font-bold text-slate-800">آنالیز ترکیب بدنی شما</h2>
-                        <span class="text-[11px] font-extrabold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">FitTools.ir ⚡</span>
+                        <span class="text-[11px] font-extrabold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200" dir="ltr">⚡ FitTools.ir</span>
                     </div>
                     
                     <div class="bg-amber-50/60 rounded-xl p-5 border border-amber-100 mb-4">
                         <span class="text-xs text-amber-700 font-medium block mb-1">درصد تخمینی چربی بدن</span>
-                        <div class="text-4xl font-black text-amber-900 tracking-tight" id="resFatPct">۱۶.۴٪</div>
+                        <div class="text-4xl font-black text-amber-900 my-1" id="resFatPct">۱۶.۴٪</div>
                         <span class="inline-block mt-2 px-3 py-0.5 rounded-full text-xs font-bold bg-amber-200 text-amber-900" id="resCategory">تناسب اندام (فیتنس)</span>
                     </div>
 
-                    <!-- طیف درصد چربی -->
                     <div class="mb-4 text-right">
                         <div class="flex justify-between text-[10px] text-slate-400 font-semibold mb-1">
                             <span>ورزشکار</span>
@@ -240,7 +242,6 @@
                         </div>
                     </div>
 
-                    <!-- باکس فاصله تا فیتنس -->
                     <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200 text-right text-xs">
                         <span class="font-bold text-emerald-900 block mb-0.5">🎯 هدف‌گذاری فیتنس و نمایان شدن عضلات:</span>
                         <p class="text-emerald-800 text-[11px] leading-relaxed font-medium" id="resGoalAdvice">
@@ -249,7 +250,6 @@
                     </div>
                 </div>
 
-                <!-- باکس پیشنهاد ابزار -->
                 <div class="bg-gradient-to-br from-amber-600 to-orange-700 rounded-2xl p-5 text-white shadow-md">
                     <span class="text-[11px] font-bold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded-full inline-block mb-2">ابزار سنجش حرفه‌ای</span>
                     <h3 class="text-sm font-bold mb-1">کالیپر و متر فنری بدنسازی</h3>
@@ -266,7 +266,6 @@
             </div>
         </div>
 
-        <!-- بخش محتوای سئو و جدول دسته‌بندی درصد چربی -->
         <article class="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-8">
             <div>
                 <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-3">چرا درصد چربی از شاخص BMI بسیار مهم‌تر است؟</h2>
@@ -275,7 +274,6 @@
                 </p>
             </div>
 
-            <!-- جدول مرجع درصد چربی استاندارد -->
             <div>
                 <h3 class="text-base font-bold text-slate-900 mb-3">جدول دسته‌بندی درصد چربی بر اساس شورای ورزش آمریکا (ACE)</h3>
                 <div class="overflow-x-auto">
@@ -324,7 +322,6 @@
                 </div>
             </div>
 
-            <!-- نحوه اندازه‌گیری دقیق -->
             <div>
                 <h3 class="text-base font-bold text-slate-900 mb-2">روش صحیح اندازه‌گیری دور بدن</h3>
                 <ul class="list-disc list-inside text-xs text-slate-600 space-y-1.5 leading-relaxed">
@@ -450,21 +447,38 @@
             });
         });
 
-        document.getElementById('downloadStoryBtn').addEventListener('click', () => {
+        document.getElementById('downloadStoryBtn').addEventListener('click', async () => {
             const card = document.getElementById('captureCard');
             const btnText = document.getElementById('storyBtnText');
             const original = btnText.innerText;
 
-            if (typeof html2canvas === 'undefined') return;
-            btnText.innerText = 'در حال ساخت تصویر... ⏳';
-            html2canvas(card, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+            if (typeof htmlToImage === 'undefined') {
+                alert('در حال آماده‌سازی موتور تصویر... لطفاً ۲ ثانیه دیگر تلاش کنید.');
+                return;
+            }
+
+            btnText.innerText = 'در حال ساخت تصویر باکیفیت... ⏳';
+            try {
+                await document.fonts.ready;
+                const dataUrl = await htmlToImage.toPng(card, {
+                    pixelRatio: 2.5,
+                    backgroundColor: '#ffffff',
+                    cacheBust: true,
+                    style: {
+                        letterSpacing: '0px',
+                        fontFamily: 'Vazirmatn, sans-serif'
+                    }
+                });
                 const link = document.createElement('a');
                 link.download = 'fittools-bodyfat.png';
-                link.href = canvas.toDataURL('image/png');
+                link.href = dataUrl;
                 link.click();
                 btnText.innerText = 'تصویر دانلود شد! ✅';
                 setTimeout(() => { btnText.innerText = original; }, 2500);
-            }).catch(() => { btnText.innerText = original; });
+            } catch (err) {
+                console.error(err);
+                btnText.innerText = original;
+            }
         });
 
         fatForm.addEventListener('submit', (e) => { e.preventDefault(); calcFat(); });

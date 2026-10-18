@@ -26,7 +26,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <!-- موتور مدرن خروجی تصویر با پشتیبانی کامل از فونت فارسی و چسبندگی حروف RTL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -53,6 +54,10 @@
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
+        }
+        .capture-fix {
+            letter-spacing: 0px !important;
+            font-feature-settings: "kern" 1, "liga" 1;
         }
     </style>
     <script type="application/ld+json">
@@ -124,7 +129,7 @@
                 <span>/</span>
                 <span class="text-slate-600 font-medium">زون‌های ضربان قلب</span>
             </nav>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">محاسبه محدوده ضربان قلب چربی‌سوزی و زون‌های تمرینی</h1>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">محاسبه محدوده ضربان قلب چربی‌سوزی و زون‌های تمرینی</h1>
             <p class="text-sm text-slate-500 mt-1">با فرمول Karvonen دقیقاً بدانید در چه دامنه‌ای از ضربان قلب، چربی‌سوزی به حداکثر می‌رسد.</p>
         </div>
 
@@ -161,32 +166,36 @@
             </div>
 
             <div class="lg:col-span-6 space-y-4">
-                <div id="captureCard" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div id="captureCard" class="capture-fix bg-white rounded-2xl border border-slate-200 p-6 shadow-sm" dir="rtl">
                     <div class="flex items-center justify-between mb-4">
                         <h2 class="text-base font-bold text-slate-800">زون‌های ۵ گانه ضربان قلب</h2>
-                        <span class="text-xs text-rose-600 font-bold" id="hrMax">حداکثر: ۱۹۲ bpm</span>
+                        <span class="text-[11px] font-extrabold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-md border border-rose-200" dir="ltr">⚡ FitTools.ir</span>
+                    </div>
+
+                    <div class="mb-3 text-right">
+                        <span class="text-xs text-rose-600 font-bold bg-rose-50/70 px-2.5 py-1 rounded-lg inline-block" id="hrMax">حداکثر توان قلب: ۱۹۲ ضربان در دقیقه</span>
                     </div>
 
                     <div class="space-y-3 text-xs">
                         <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
                             <div><span class="font-bold text-slate-800 block">زون ۱: گرم‌کردن و ریکاوری (۵۰-۶۰٪)</span></div>
-                            <span class="font-black text-slate-700 text-sm" id="z1">۱۲۸ - ۱۴۱</span>
+                            <span class="font-black text-slate-700 text-sm" id="z1">۱۲۸ تا ۱۴۱</span>
                         </div>
                         <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between">
                             <div><span class="font-bold text-emerald-900 block">زون ۲: چربی‌سوزی پایه (۶۰-۷۰٪) 🎯</span></div>
-                            <span class="font-black text-emerald-800 text-sm" id="z2">۱۴۱ - ۱۵۴</span>
+                            <span class="font-black text-emerald-800 text-sm" id="z2">۱۴۱ تا ۱۵۴</span>
                         </div>
                         <div class="p-3 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-between">
                             <div><span class="font-bold text-blue-900 block">زون ۳: هوازی و استقامت (۷۰-۸۰٪)</span></div>
-                            <span class="font-black text-blue-800 text-sm" id="z3">۱۵۴ - ۱۶۷</span>
+                            <span class="font-black text-blue-800 text-sm" id="z3">۱۵۴ تا ۱۶۷</span>
                         </div>
                         <div class="p-3 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-between">
                             <div><span class="font-bold text-amber-900 block">زون ۴: آستانه بی‌هوازی (۸۰-۹۰٪)</span></div>
-                            <span class="font-black text-amber-800 text-sm" id="z4">۱۶۷ - ۱۷۹</span>
+                            <span class="font-black text-amber-800 text-sm" id="z4">۱۶۷ تا ۱۷۹</span>
                         </div>
                         <div class="p-3 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-between">
                             <div><span class="font-bold text-rose-900 block">زون ۵: حداکثر توان (۹۰-۱۰۰٪)</span></div>
-                            <span class="font-black text-rose-800 text-sm" id="z5">۱۷۹ - ۱۹۲</span>
+                            <span class="font-black text-rose-800 text-sm" id="z5">۱۷۹ تا ۱۹۲</span>
                         </div>
                     </div>
                 </div>
@@ -201,7 +210,6 @@
             </div>
         </div>
 
-        <!-- محتوای سئو و جدول زون‌های تمرینی -->
         <article class="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-8">
             <div>
                 <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-3">فرمول کاروونن (Karvonen) چیست و چه مزیتی دارد؟</h2>
@@ -210,7 +218,6 @@
                 </p>
             </div>
 
-            <!-- جدول راهنمای زون‌ها -->
             <div>
                 <h3 class="text-base font-bold text-slate-900 mb-3">جدول کاربرد زون‌های پنج‌گانه ضربان قلب</h3>
                 <div class="overflow-x-auto">
@@ -280,7 +287,7 @@
 
             function getRate(pct) { return Math.round(rest + (hrr * pct)); }
 
-            document.getElementById('hrMax').innerText = 'حداکثر توان: ' + fmtInt.format(maxHR) + ' bpm';
+            document.getElementById('hrMax').innerText = 'حداکثر توان قلب: ' + fmtInt.format(maxHR) + ' ضربان در دقیقه';
 
             const z1_l = getRate(0.50), z1_h = getRate(0.60);
             const z2_l = z1_h, z2_h = getRate(0.70);
@@ -288,11 +295,11 @@
             const z4_l = z3_h, z4_h = getRate(0.90);
             const z5_l = z4_h, z5_h = maxHR;
 
-            document.getElementById('z1').innerText = fmtInt.format(z1_l) + ' - ' + fmtInt.format(z1_h);
-            document.getElementById('z2').innerText = fmtInt.format(z2_l) + ' - ' + fmtInt.format(z2_h);
-            document.getElementById('z3').innerText = fmtInt.format(z3_l) + ' - ' + fmtInt.format(z3_h);
-            document.getElementById('z4').innerText = fmtInt.format(z4_l) + ' - ' + fmtInt.format(z4_h);
-            document.getElementById('z5').innerText = fmtInt.format(z5_l) + ' - ' + fmtInt.format(z5_h);
+            document.getElementById('z1').innerText = fmtInt.format(z1_l) + ' تا ' + fmtInt.format(z1_h);
+            document.getElementById('z2').innerText = fmtInt.format(z2_l) + ' تا ' + fmtInt.format(z2_h);
+            document.getElementById('z3').innerText = fmtInt.format(z3_l) + ' تا ' + fmtInt.format(z3_h);
+            document.getElementById('z4').innerText = fmtInt.format(z4_l) + ' تا ' + fmtInt.format(z4_h);
+            document.getElementById('z5').innerText = fmtInt.format(z5_l) + ' تا ' + fmtInt.format(z5_h);
         }
 
         document.getElementById('copyLinkBtn').addEventListener('click', () => {
@@ -307,20 +314,38 @@
             });
         });
 
-        document.getElementById('downloadStoryBtn').addEventListener('click', () => {
+        document.getElementById('downloadStoryBtn').addEventListener('click', async () => {
             const card = document.getElementById('captureCard');
             const btnText = document.getElementById('storyBtnText');
             const original = btnText.innerText;
-            if (typeof html2canvas === 'undefined') return;
-            btnText.innerText = 'در حال ساخت تصویر... ⏳';
-            html2canvas(card, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+
+            if (typeof htmlToImage === 'undefined') {
+                alert('در حال آماده‌سازی موتور تصویر... لطفاً ۲ ثانیه دیگر تلاش کنید.');
+                return;
+            }
+
+            btnText.innerText = 'در حال ساخت تصویر باکیفیت... ⏳';
+            try {
+                await document.fonts.ready;
+                const dataUrl = await htmlToImage.toPng(card, {
+                    pixelRatio: 2.5,
+                    backgroundColor: '#ffffff',
+                    cacheBust: true,
+                    style: {
+                        letterSpacing: '0px',
+                        fontFamily: 'Vazirmatn, sans-serif'
+                    }
+                });
                 const link = document.createElement('a');
                 link.download = 'fittools-heartrate.png';
-                link.href = canvas.toDataURL('image/png');
+                link.href = dataUrl;
                 link.click();
                 btnText.innerText = 'تصویر دانلود شد! ✅';
                 setTimeout(() => { btnText.innerText = original; }, 2500);
-            }).catch(() => { btnText.innerText = original; });
+            } catch (err) {
+                console.error(err);
+                btnText.innerText = original;
+            }
         });
 
         hrForm.addEventListener('submit', (e) => { e.preventDefault(); calcHR(); });

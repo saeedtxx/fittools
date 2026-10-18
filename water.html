@@ -26,7 +26,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <!-- موتور مدرن خروجی تصویر با پشتیبانی کامل از فونت فارسی و چسبندگی حروف RTL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -53,6 +54,10 @@
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
+        }
+        .capture-fix {
+            letter-spacing: 0px !important;
+            font-feature-settings: "kern" 1, "liga" 1;
         }
     </style>
     <script type="application/ld+json">
@@ -124,13 +129,12 @@
                 <span>/</span>
                 <span class="text-slate-600 font-medium">محاسبه آب مصرفی</span>
             </nav>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">محاسبه آب مورد نیاز روزانه و ردیاب هیدراتاسیون</h1>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">محاسبه آب مورد نیاز روزانه و ردیاب هیدراتاسیون</h1>
             <p class="text-sm text-slate-500 mt-1">سهمیه دقیق آب روزانه خود را بر اساس وزن و فعالیت بسنجید و مصرف امروزتان را ثبت کنید.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div class="lg:col-span-7 space-y-6">
-                <!-- فرم محاسبه -->
                 <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
                     <h2 class="text-base font-bold text-slate-800 mb-5 flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
@@ -163,7 +167,6 @@
                         </button>
                     </form>
 
-                    <!-- دکمه‌های اشتراک‌گذاری -->
                     <div class="mt-5 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         <button type="button" id="downloadStoryBtn" class="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm">
                             <span>📸</span>
@@ -176,7 +179,6 @@
                     </div>
                 </div>
 
-                <!-- ردیاب تعاملی لیوان‌های آب -->
                 <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
                     <div class="flex items-center justify-between mb-3">
                         <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
@@ -193,18 +195,18 @@
                 </div>
             </div>
 
-            <!-- کارت نتایج -->
+            <!-- کارت نتایج استاندارد برای خروجی استوری -->
             <div class="lg:col-span-5 space-y-4">
-                <div id="captureCard" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm text-center">
+                <div id="captureCard" class="capture-fix bg-white rounded-2xl border border-slate-200 p-6 shadow-sm text-center" dir="rtl">
                     <div class="flex items-center justify-between mb-4">
                         <h2 class="text-base font-bold text-slate-800">برنامه هیدراتاسیون شما</h2>
-                        <span class="text-[11px] font-extrabold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100">FitTools.ir ⚡</span>
+                        <span class="text-[11px] font-extrabold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-100" dir="ltr">⚡ FitTools.ir</span>
                     </div>
                     
                     <div class="bg-blue-50/60 rounded-xl p-5 border border-blue-100 mb-4">
                         <span class="text-xs text-blue-600 font-medium block mb-1">حجم کل آب مورد نیاز</span>
-                        <div class="text-4xl font-black text-blue-900 tracking-tight" id="resLiters">۲.۹</div>
-                        <span class="text-xs text-blue-500 font-bold">لیتر در شبانه‌روز</span>
+                        <div class="text-4xl font-black text-blue-900 my-1" id="resLiters">۲.۹</div>
+                        <span class="text-xs text-blue-600 font-bold">لیتر در شبانه‌روز</span>
                     </div>
 
                     <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-around text-xs mb-4">
@@ -219,7 +221,6 @@
                         </div>
                     </div>
 
-                    <!-- تایم‌لاین پیشنهادی -->
                     <div class="text-right text-xs space-y-2 border-t border-slate-100 pt-3">
                         <div class="font-bold text-slate-700 mb-1">زمان‌بندی طلایی نوشیدن آب:</div>
                         <div class="text-slate-500 text-[11px] flex justify-between"><span>🌅 ناشتا بلافاصله پس از بیداری:</span> <span class="font-bold text-slate-800" id="tMorning">۲ لیوان</span></div>
@@ -229,7 +230,6 @@
                     </div>
                 </div>
 
-                <!-- باکس پیشنهاد قمقمه و تجهیزات -->
                 <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-5 text-white shadow-md">
                     <span class="text-[11px] font-bold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded-full inline-block mb-2">تجهیزات هیدراتاسیون</span>
                     <h3 class="text-sm font-bold mb-1">فراموش می‌کنید به موقع آب بنوشید؟</h3>
@@ -241,7 +241,6 @@
             </div>
         </div>
 
-        <!-- محتوای سئو و جدول آب مصرفی -->
         <article class="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-8">
             <div>
                 <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-3">تاثیر هیدراتاسیون بر چربی‌سوزی و راندمان ورزشی</h2>
@@ -250,7 +249,6 @@
                 </p>
             </div>
 
-            <!-- جدول مرجع نیاز آب روزانه -->
             <div>
                 <h3 class="text-base font-bold text-slate-900 mb-3">جدول استاندارد آب مورد نیاز بدن بر اساس وزن و فعالیت</h3>
                 <div class="overflow-x-auto">
@@ -400,20 +398,38 @@
             });
         });
 
-        document.getElementById('downloadStoryBtn').addEventListener('click', () => {
+        document.getElementById('downloadStoryBtn').addEventListener('click', async () => {
             const card = document.getElementById('captureCard');
             const btnText = document.getElementById('storyBtnText');
             const original = btnText.innerText;
-            if (typeof html2canvas === 'undefined') return;
-            btnText.innerText = 'در حال ساخت تصویر... ⏳';
-            html2canvas(card, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+
+            if (typeof htmlToImage === 'undefined') {
+                alert('در حال آماده‌سازی موتور تصویر... لطفاً ۲ ثانیه دیگر تلاش کنید.');
+                return;
+            }
+
+            btnText.innerText = 'در حال ساخت تصویر باکیفیت... ⏳';
+            try {
+                await document.fonts.ready;
+                const dataUrl = await htmlToImage.toPng(card, {
+                    pixelRatio: 2.5,
+                    backgroundColor: '#ffffff',
+                    cacheBust: true,
+                    style: {
+                        letterSpacing: '0px',
+                        fontFamily: 'Vazirmatn, sans-serif'
+                    }
+                });
                 const link = document.createElement('a');
                 link.download = 'fittools-water-plan.png';
-                link.href = canvas.toDataURL('image/png');
+                link.href = dataUrl;
                 link.click();
                 btnText.innerText = 'تصویر دانلود شد! ✅';
                 setTimeout(() => { btnText.innerText = original; }, 2500);
-            }).catch(() => { btnText.innerText = original; });
+            } catch (err) {
+                console.error(err);
+                btnText.innerText = original;
+            }
         });
 
         form.addEventListener('submit', (e) => { e.preventDefault(); calcWater(); });
